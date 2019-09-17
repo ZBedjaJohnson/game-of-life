@@ -1,34 +1,60 @@
 <!DOCTYPE html>
-<html lang="">
+<html>
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Game of Life</title>
 
-  <!-- <link href="styles/reset.css" rel="stylesheet"> -->
-  <!-- <link href="styles/global.css" rel="stylesheet"> -->
+  <link href="styles/reset.css" rel="stylesheet">
+  <link href="styles/global.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
   <script src="p5.min.js"></script>
   <script src="logic.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap" rel="stylesheet">
+
 </head>
 <body>
    
-  <h1>Game of Life</h1>
-
+  <h3>Game of Life</h3>
+  <p> Draw live cells with mouse. Press 'r' to randomize, 'w' to wipe and 'p' to play/pause</p>
   <div id="canvas"></div>
 
-  <div id="">
-    <button class="child" onclick="playPause()">Play/Pause</button>
-    <button class="child" onclick="wipe()">Wipe</button>
-    <button class="child" onclick="randomize()">Randomize</button>
-
-    <!-- <div class="child">
-      <div>Frame Rate</div>
-      <input type="range" min="1" max="100" value="50" class="slider" oninput="fmRate(this.value)">
-      <output id="fmOut"></output>
-    </div> -->
+  <div class="btnRow">
+    <button class="waves-effect waves-light btn-small" onclick="playPause()">Play/Pause</button>
+    <button class="waves-effect waves-light btn-small" onclick="wipe()">Wipe</button>
+    <button class="waves-effect waves-light btn-small" onclick="randomize()">Randomize</button>
+    <div>Grid</div>
+    <div>
+    <input type="range" class="slider" min="3" max="100" value="10" oninput="setGrid(this.value)">
+    </div>
   </div>
-
+  <div class="btnRow">
+    <button class="waves-effect waves-light btn-small" onclick="frameRt(10)">Faster +10</button>
+    <button class="waves-effect waves-light btn-small" onclick="frameRt(1)">Faster +1</button>
+    <output id="fmOut"></output>
+    <button class="waves-effect waves-light btn-small" onclick="frameRt(-1)">Slower -1</button>
+    <button class="waves-effect waves-light btn-small" onclick="frameRt(-10)">Slower -10</button> 
+    <!-- ! Slider doesnt work -->
+   <!-- <input type="range" min="1" max="60" step="5" onchange="frameRt(this.value)">
+   <button class="child" onclick="frameRt(60)">Slower</button>  -->
+  </div>
+  <h4> The Rules</h4>
+  <p>
+    Live Cell = BLACK, Dead Cell = White
+    <br><br>
+    <ul>
+      <li>Any live cell with fewer than two live neighbours dies.</li>
+      <li>Any live cell with two or three live neighbours lives on to the next generation.</li>
+      <li>Any live cell with more than three live neighbours dies.</li>
+      <li>Any dead cell with exactly three live neighbours becomes a live cell.</li>
+    </ul>
+  </p>
+  <br><br>
 </body>
 
 </html>

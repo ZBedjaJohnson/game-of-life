@@ -1,0 +1,38 @@
+body {
+	display: flex;
+	flex-direction: column;
+  justify-content: center;
+	align-items: center;
+	background: #f5f5ff;
+	/* margin: 25px 0 100px !important; */
+}
+#canvas {
+	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+	/* border: 1px solid black; */
+	margin: 10px;
+}
+
+.btnRow {
+	display: flex;
+	height: 55px;
+	justify-content: center;
+	align-items: center;
+}
+.btnRow * {
+	margin: 0 5px;
+}
+.btnRow button {
+	flex-shrink: 0;
+}
+.btnRow .slider {
+	flex-shrink: 1;
+	height: 45px;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+}
+
+
+/* 
+--shadow2dp: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+--shadow8dp: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12); */

@@ -1,30 +1,32 @@
 const width = 500
 const hieght = 500
-const res = 25
+var sqPerLine = 16
 
 var state, neighbours, orginState
-var cols, rows
+var res, cols, rows
 var paused = true
-var fmRate = 150
+var fps = 10
 
 function setup() {
 	var canvas = createCanvas(width, hieght)
 	canvas.parent('canvas')
 
-	cols = width / res
-	rows = hieght / res
-	state = generateGrid(cols, rows)
-	neighbours = generateGrid(cols, rows)
+	state = generateGrid()
+	neighbours = generateGrid()
 
 	visualize()
+	frameRt(fps)
+}
 
-	function generateGrid(cols, rows) {
-		var arr = new Array(cols)
-		for (var i = 0; i < arr.length; i++) {
-			arr[i] = new Array(rows).fill(0)
-		}
-		return arr
+function generateGrid() {
+	res = hieght / sqPerLine
+	cols = Math.ceil(width / res)
+	rows = Math.ceil(hieght / res)
+	var arr = new Array(cols)
+	for (var i = 0; i < arr.length; i++) {
+		arr[i] = new Array(rows).fill(0)
 	}
+	return arr
 }
 
 function mousePressed() {
@@ -62,8 +64,6 @@ function draw() {
 }
 
 function visualize() {
-	background(255)
-	strokeWeight(2)
 	stroke(0, 0, 0, 20)
 
 	for (var i = 0; i < cols; i++) {
@@ -77,7 +77,7 @@ function visualize() {
 			var y = j * res
 			rect(x, y, res, res)
 			fill(3, 252, 28)
-			runNeighbours()
+			// runNeighbours()
 			// text(neighbours[i][j], x, y, res, res) // Debug
 		}
 	}
@@ -132,17 +132,21 @@ function calcState(i, j) {
 }
 
 function keyTyped() {
-	if (key === ' ') {
+	if (key === 'p') {
 		playPause()
 	}
-	//DOESNT WORK
 	if (key === 'w') {
 		wipe()
 	}
-	//DOESNT WORK
 	if (key === 'r') {
 		randomize()
 	}
+}
+function frameRt(val) {
+	fps += val
+	document.getElementById('fmOut').innerHTML = 'Target FPS: ' + fps
+	frameRate(fps)
+	console.log(frameRate())
 }
 
 function playPause() {
@@ -167,6 +171,8 @@ function randomize() {
 	}
 }
 
-// function fmRate(val) {
-// 	console.log(val)
-// }
+function setGrid(val) {
+	sqPerLine = val
+	state = generateGrid()
+	neighbours = generateGrid()
+}
